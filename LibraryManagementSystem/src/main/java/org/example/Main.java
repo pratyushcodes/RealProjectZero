@@ -1,6 +1,8 @@
 package org.example;
 
+import org.example.DAOs.BookDAO;
 import org.example.DAOs.UserDAO;
+import org.example.models.Book;
 import org.example.models.User;
 import org.example.utils.ConnectionUtil;
 
@@ -20,11 +22,34 @@ public class Main {
             System.out.println("Sorry, connection failed.");
         }
 
-        UserDAO uDAO = new UserDAO();
-        String u = uDAO.getUserEmailByID(4);
-        System.out.println(u);
+        UserDAO uDao = new UserDAO();
+        User s = uDao.getFullAttributes(13);
+        System.out.println(s);
+
+        BookDAO bDao = new BookDAO();
+        Book b = bDao.getFullAttributes(1);
+        String a = bDao.getBookAuthorByID(1);
+        System.out.println(b);
 
 
+        //testing out adding a new library user
+        User x = new User("Billy","Walters","billywalters14@gmail.com");
+//        uDAO.addLibraryUser(x);
+        User y = new User("Eric","Jenkins","ericjenkins19@gmail.com");
+//        uDAO.addLibraryUser(y);
+        User z = new User("Jamarr","Chase","jamarrchase@bengals.com");
+//        uDao.addLibraryUser(z);
+        //testing out adding more books;
+        Book nb = new Book("The Glass Castle", "memoir/autobiography","Jeannette Walls");
+        Book nv = new Book("The Namesake","realistic fiction", "Jhumpa Lahiri");
+        Book nz = new Book("Outlers","self help","Malcolm Gladwell");
+        /* I spelled outliers wrong so I plan on updating it later */
+        bDao.addLibraryBook(nb);
+        bDao.addLibraryBook(nv);
+        bDao.addLibraryBook(nz);
+        //added the books above for testing purposes
 
     }
+
+
 }

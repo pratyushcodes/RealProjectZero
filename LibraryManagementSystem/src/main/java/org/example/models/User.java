@@ -12,12 +12,20 @@ public class User {
     }
 
     //all args constructors
-    public User(int user_id, String first_name, String last_name, String email, String full_name) {
+    public User(String first_name, String last_name, String email) {
+//        this.user_id = user_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.full_name = first_name + " " + last_name;
+    }
+
+    public User(int user_id, String first_name, String last_name, String email){
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
-        this.full_name = full_name;
+        this.full_name = first_name + " " + last_name;
     }
 
     public int getUser_id() {

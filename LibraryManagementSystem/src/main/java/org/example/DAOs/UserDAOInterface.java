@@ -10,6 +10,8 @@ public interface UserDAOInterface {
     String getUserEmailByID(int id);
     //A method that gets the users full name by ID
     String getFullNameByID(int id);
+    //A method that allows the addition of another library User
+    User  addLibraryUser(User person);
 
     //A method that would create a potential new user
 }
