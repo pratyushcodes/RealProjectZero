@@ -52,3 +52,4 @@ VALUES (1,1,'2024-10-15','2024-11-20'),
 SELECT * FROM checkouts;
 
 
+SELECT * FROM users;
