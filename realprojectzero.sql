@@ -37,8 +37,8 @@ CREATE TABLE checkouts (
 	checkout_id serial PRIMARY KEY,
 	book_id int,
 	user_id int,
-	checkout_date DATE,
-	return_date DATE,
+	checkout_date TEXT NOT NULL,
+	return_date TEXT NOT NULL,
 	FOREIGN KEY (book_id) REFERENCES books(book_id),
 	FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

@@ -1,8 +1,10 @@
 package org.example;
 
 import org.example.DAOs.BookDAO;
+import org.example.DAOs.CheckoutDAO;
 import org.example.DAOs.UserDAO;
 import org.example.models.Book;
+import org.example.models.Checkout;
 import org.example.models.User;
 import org.example.utils.ConnectionUtil;
 
@@ -44,11 +46,16 @@ public class Main {
         Book nv = new Book("The Namesake","realistic fiction", "Jhumpa Lahiri");
         Book nz = new Book("Outlers","self help","Malcolm Gladwell");
         /* I spelled outliers wrong so I plan on updating it later */
-        bDao.addLibraryBook(nb);
-        bDao.addLibraryBook(nv);
-        bDao.addLibraryBook(nz);
+//        bDao.addLibraryBook(nb);
+//        bDao.addLibraryBook(nv);
+//        bDao.addLibraryBook(nz);
         //added the books above for testing purposes
 
+        CheckoutDAO cda = new CheckoutDAO();
+        Checkout co = new Checkout("10/17/24","11/7/24",14,7);
+        Checkout cod = new Checkout("10/17/24","11/7/24",13,5);
+//        cda.addNewCheckout(co);
+//        cda.addNewCheckout(cod);
     }
 
 
