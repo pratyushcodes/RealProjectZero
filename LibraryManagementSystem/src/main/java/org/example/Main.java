@@ -20,12 +20,11 @@ public class Main {
             System.out.println("Sorry, connection failed.");
         }
 
-        UserDAO uDao = new UserDAO();
-        String u = uDao.getFullNameByID(3);
+        UserDAO uDAO = new UserDAO();
+        String u = uDAO.getUserEmailByID(4);
         System.out.println(u);
 
-        User a = new User();
-        int b = a.getUser_id();
-        System.out.println(b);
+
+
     }
 }
