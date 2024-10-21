@@ -12,6 +12,8 @@ public interface UserDAOInterface {
     String getFullNameByID(int id);
     //A method that allows the addition of another library User
     User  addLibraryUser(User person);
+    String updateUserEmail (int id, String newEmail);
+    boolean deleteUser(int id);
 
     //A method that would create a potential new user
 }

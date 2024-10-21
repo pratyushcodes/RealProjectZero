@@ -10,6 +10,7 @@ import org.example.utils.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -26,12 +27,24 @@ public class Main {
 
         UserDAO uDao = new UserDAO();
         User s = uDao.getFullAttributes(13);
-        System.out.println(s);
+//        System.out.println(s);
+
+//        int userIdToUpdate = 13;
+//        String newEmail = "ericjenkins20@gmail.com";
+//        String updatedEmail = uDao.updateUserEmail(userIdToUpdate,newEmail);
+//
+//        if (updatedEmail != null) {
+//            System.out.println("Email updated successfully to: " + updatedEmail);
+//        } else {
+//            System.out.println("Failed to update email.");
+//        }
+
+
 
         BookDAO bDao = new BookDAO();
         Book b = bDao.getFullAttributes(1);
         String a = bDao.getBookAuthorByID(1);
-        System.out.println(b);
+//        System.out.println(b);
 
 
         //testing out adding a new library user
@@ -56,7 +69,22 @@ public class Main {
         Checkout cod = new Checkout("10/17/24","11/7/24",13,5);
 //        cda.addNewCheckout(co);
 //        cda.addNewCheckout(cod);
+        int checkOutIdToDelete = 1;
+        boolean deleted = cda.deleteCheckout(checkOutIdToDelete);
+
+        if (deleted) {
+            System.out.println("Checkout deleted successfully.");
+        } else {
+            System.out.println("Failed to delete checkout.");
+        }
+
+        ArrayList<Checkout> checkouts = cda.getAllCheckouts();
+        System.out.println(checkouts);
+        for (Checkout c : checkouts) {
+            System.out.println(c);
+        }
     }
+
 
 
 }

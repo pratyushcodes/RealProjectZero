@@ -1,5 +1,6 @@
 package org.example.DAOs;
 
+import org.example.models.Book;
 import org.example.models.Checkout;
 import org.example.utils.ConnectionUtil;
 
@@ -7,6 +8,23 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class CheckoutDAO implements CheckoutDAOInterface{
+    @Override
+    public boolean deleteCheckout(int checkoutId) {
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            // SQL query to delete the checkout by checkout_id
+            String sql = "DELETE FROM checkouts WHERE checkout_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, checkoutId);
+            int rowsAffected = ps.executeUpdate(); // Execute the delete operation
+
+            return rowsAffected > 0; // Returns true if the row was deleted successfully
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sorry, couldn't delete checkout.");
+        }
+        return false; // Return false if deletion fails
+    }
+
     @Override
     public Checkout addNewCheckout(Checkout checkout) {
         //Try to get a connection to the database
@@ -37,22 +55,19 @@ public class CheckoutDAO implements CheckoutDAOInterface{
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             ArrayList<Checkout> checkouts = new ArrayList<>();
-            return checkouts;
             while(rs.next()){
                 Checkout c = new Checkout(
                         rs.getString("checkout_date"),
-                        rs.getInt("checkout_id"),
-                        rs.getString("return date"),
-                        this.books(books),
-                        this.users(users)
-
-
+                        rs.getString("return_date"),
+                        rs.getInt("book_id"),
+                        rs.getInt("user_id")
                 );
+                checkouts.add(c);
             }
         } catch(SQLException e){
             e.printStackTrace();
             System.out.println("Sorry, connection failed.");
         }
-        return null;
+        return new ArrayList<>();
     }
 }

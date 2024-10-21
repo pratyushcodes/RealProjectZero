@@ -12,5 +12,6 @@ public interface BookDAOInterface {
     //a method that gets the book Author by its ID number
     Book addLibraryBook(Book book);
     //a method to add a library book to the package
+    boolean deleteBook(int id);
 
 }

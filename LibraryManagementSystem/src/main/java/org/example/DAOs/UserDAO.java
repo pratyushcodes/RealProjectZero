@@ -101,7 +101,40 @@ public class UserDAO implements UserDAOInterface{
             System.out.println("Sorry, connection failed.");
         }
         return null;
+    }
 
+    @Override
+    public boolean deleteUser(int id) {
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            String sql = "DELETE FROM users WHERE user_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0; // Return true if a row was deleted
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sorry, couldn't delete user.");
+            return false;
+        }
+    }
 
+    @Override
+    public String updateUserEmail(int id, String newEmail) {
+        //Try to get a connection to the database
+        try(Connection connection = ConnectionUtil.getConnection()){
+            // String that represents SQL query
+            String sql = "UPDATE users SET email = ? WHERE user_id = ?";
+            // Make a prepared  statement to fill in the variable
+            PreparedStatement ps = connection.prepareStatement(sql);
+            // Use id parameter to set the variable with a ps.set() method
+            ps.setString(1, newEmail);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            return newEmail;
+        } catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Sorry, couldn't update email");
+        }
+        return null;
     }
 }

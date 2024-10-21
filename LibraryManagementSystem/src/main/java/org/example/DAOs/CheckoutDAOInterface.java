@@ -12,4 +12,6 @@ public interface CheckoutDAOInterface {
     Checkout addNewCheckout(Checkout checkout);
 
     ArrayList<Checkout> getAllCheckouts();
+
+    boolean deleteCheckout(int checkoutId);
 }

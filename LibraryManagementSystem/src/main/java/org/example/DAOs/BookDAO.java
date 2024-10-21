@@ -11,6 +11,21 @@ import java.sql.SQLException;
 
 public class BookDAO implements BookDAOInterface{
     @Override
+    public boolean deleteBook(int id) {
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            String sql = "DELETE FROM books WHERE book_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0; // Return true if a row was deleted
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sorry, couldn't delete book.");
+            return false;
+        }
+    }
+
+    @Override
     public Book getFullAttributes(int id) {
         //Try to get a connection to the database
         try(Connection connection = ConnectionUtil.getConnection()){
